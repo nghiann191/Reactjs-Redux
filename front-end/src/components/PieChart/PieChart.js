@@ -1,71 +1,58 @@
 import React from "react";
-import axios from "axios";
 import { VictoryPie, VictoryLegend } from "victory";
-import "./StylePie.css";
-import {connect} from 'react-redux';
-import {setData} from '../../actions/index';
+import "./StylePieChart.css";
+import { connect } from "react-redux";
+import { setData } from "../../actions/index";
 
 class PieChart extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      data:[]
-    }
+      data: [],
+      percentIOS:"",
+      percentAndroid:"",
+    };
   }
-  // async componentDidMount() {
-  //   let url = "http://localhost:8080/device_summary";
-  //   let headers = {
-  //     token: localStorage.getItem("token")
-  //   };
-  //   try {
-  //     const data = await axios.get(url, { headers });
-  //     if(data.request.status === 200){
-  //       this.setState({
-  //       data: data.data
-  //     },
-  //       )
-  //     }
-            
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-  async componentDidMount(){
-     const sum = setData();
+  async componentDidMount() {
+    const sum = setData();
     this.setState({
-      data:(await sum.payload).data
+      data: (await sum.payload).data,
+      percentIOS: (await sum.payload).data[0].percent,
+      percentAndroid: (await sum.payload).data[1].percent
     });
     console.log(this.state.data);
   }
   render() {
-   
     return (
-      <div className="pie-pie">
-        <div className="pie-chart">
+        <svg viewBox="20 20 900 900" width="700" height="700">
+
           <VictoryPie
-            style={{ labels: { fill: "none" } }}
+            standalone={false}
+            style={{ labels: { fill: "none"} }}
             innerRadius={100}
             colorScale={["#32aeca", "#8e3ace"]}
             data={this.state.data}
-            x = "name"
-            y = "percent"
+            x="name"
+            y="percent"
           />
-        </div>
-        <div className="pie-legend">
+
           <VictoryLegend
-            width={100}
-            data={[
-              { name: "IOS", symbol: { fill: "#32aeca", type: "square" } },
-              { name: "Android", symbol: { fill: "#8e3ace" } }
-            ]}
+            standalone={false}
+            data={this.state.data}
+            x={400}
+            y={200}
           />
-        </div>
-      </div>
+          <text x="22" y="50" >Device Types</text>
+          <text x="433" y="237" >{this.state.percentIOS} %</text>
+          <text x="615" y="220" >{this.state.percentIOS * 191}</text>
+          <text x="433" y="267" >{this.state.percentAndroid} %</text>
+          <text x="615" y="250" >{this.state.percentAndroid * 191}</text>
+        </svg>
     );
   }
 }
-function mapStateToProps({data}){
-  return {data};
+function mapStateToProps({ data }) {
+  return { data };
 }
 
-export default connect(mapStateToProps,null)(PieChart);
+export default connect(mapStateToProps, null)(PieChart);

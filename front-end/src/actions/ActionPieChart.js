@@ -1,5 +1,5 @@
-import { ActionTypes } from '../constants/constants';
-import axios from 'axios';
+import { ActionTypes } from "../constants/constants";
+import axios from "axios";
 
 export function setData() {
     let url = "http://localhost:8080/device_summary";

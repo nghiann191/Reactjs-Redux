@@ -1,4 +1,4 @@
-import { setData } from './ActionPie';
+import { setData } from './ActionPieChart';
 
 export {
     setData

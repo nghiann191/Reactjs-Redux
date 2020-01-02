@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import PieReducer from './reducerPie';
+import PieChartReducer from './reducerPieChart';
 
 const rootReducer = combineReducers({
-    data: PieReducer
+    data: PieChartReducer
 });
 
 export default rootReducer;
