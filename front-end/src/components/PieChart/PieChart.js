@@ -10,7 +10,7 @@ class PieChart extends React.Component {
     const {data} = this.props;
     console.table(data[0]);
     return (
-        <svg viewBox="20 20 900 900" width="700" height="500">
+        <svg viewBox="20 20 900 900" width="700" height="700">
 
           <VictoryPie
             standalone={false}
