@@ -2,51 +2,38 @@ import React from "react";
 import { VictoryPie, VictoryLegend } from "victory";
 import "./StylePieChart.css";
 import { connect } from "react-redux";
-import { setData } from "../../actions/index";
+import { PieChartLegend } from "./PieChartLegend";
 
 class PieChart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      percentIOS:"",
-      percentAndroid:"",
-    };
-  }
-  async componentDidMount() {
-    const sum = setData();
-    this.setState({
-      data: (await sum.payload).data,
-      percentIOS: (await sum.payload).data[0].percent,
-      percentAndroid: (await sum.payload).data[1].percent
-    });
-    console.log(this.state.data);
-  }
+  
   render() {
+    const {data} = this.props;
+    console.table(data[0]);
     return (
-        <svg viewBox="20 20 900 900" width="700" height="700">
+        <svg viewBox="20 20 900 900" width="700" height="500">
 
           <VictoryPie
             standalone={false}
             style={{ labels: { fill: "none"} }}
             innerRadius={100}
             colorScale={["#32aeca", "#8e3ace"]}
-            data={this.state.data}
+            data={data[0]}
             x="name"
-            y="percent"
+            y="number"
           />
 
           <VictoryLegend
             standalone={false}
-            data={this.state.data}
-            x={400}
-            y={200}
+            data={data[0]}
+            colorScale={["#32aeca", "#8e3ace"]}
+            dataComponent={<PieChartLegend/>}
+            rowGutter={{top:0,bottom:30}}
+            style={{labels:{fontSize:24}}}
+            x={520}
+            y={100}
           />
           <text x="22" y="50" >Device Types</text>
-          <text x="433" y="237" >{this.state.percentIOS} %</text>
-          <text x="615" y="220" >{this.state.percentIOS * 191}</text>
-          <text x="433" y="267" >{this.state.percentAndroid} %</text>
-          <text x="615" y="250" >{this.state.percentAndroid * 191}</text>
+        
         </svg>
     );
   }

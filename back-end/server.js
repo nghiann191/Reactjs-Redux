@@ -12,9 +12,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/device_summary', (req, res) => {
-    const percent = Math.floor(Math.random() * 100);
+    const num = Math.floor(Math.random() * 10000);
     res.send([
-        { "name": `IOS`, "percent": percent, symbol: { type: "square", fill: "#32aeca" } },
-        { "name": `Android`, "percent": 100 - percent, symbol: { type: "diamond", fill: "#8e3ace" } }
+        { "name": `IOS`, "number": num },
+        { "name": `Android`, "number": 10000 - num }
     ])
 })
