@@ -1,14 +1,22 @@
 import { ActionTypes } from "../constants/constants";
 import axios from "axios";
 
-export async function setData() {
+export const setData =() => {
   let url = "http://localhost:8080/device_summary";
   let headers = {
     token: localStorage.getItem("token")
   };
-  const res = await axios.get(url, { headers });
-  return {
-    type: ActionTypes.SHOW_DATA,
-    payload: res.data
-  };
+  return dispatch => {
+    axios
+    .get(url, { headers })
+    .then(e => {
+      dispatch(
+        { type: ActionTypes.SHOW_DATA, data: e.data },
+      ) 
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+  
 }

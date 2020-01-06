@@ -1,5 +1,3 @@
-import { setData } from './ActionPieChart';
+import { setData } from "./ActionPieChart";
 
-export {
-    setData
-};
+export { setData };

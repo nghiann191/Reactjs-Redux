@@ -1,7 +1,6 @@
 import React from "react";
 import PieChart from "./components/PieChart/PieChart";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import { setData } from "./actions/index";
 
 class App extends React.Component {
@@ -13,7 +12,6 @@ class App extends React.Component {
   }
 }
 function mapDispatchToProps(dispatch) {
-  // return bindActionCreators({ setData }, dispatch);
   return{
     setData : () => dispatch(setData())
   }
