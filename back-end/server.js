@@ -13,8 +13,10 @@ app.get("/", (req, res) => {
 
 app.get("/device_summary", (req, res) => {
   const num = Math.floor(Math.random() * 10000);
-  res.send([
-    { name: "IOS", number: num },
-    { name: "Android", number: 10000 - num }
-  ]);
+  const getData=() => {res.send([
+      { name: "IOS", number: num },
+      { name: "Android", number: 10000 - num }
+    ]);
+  }
+  setTimeout(getData,5000);
 });
