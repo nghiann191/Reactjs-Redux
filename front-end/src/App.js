@@ -9,18 +9,18 @@ class App extends React.Component {
     this.props.setData();
   }
   render() {
-    return(
+    return (
       <div>
         <h3>Device Types</h3>
-        <PieChartSpinner/>
-        <PieChart/>
-      </div>);
+        <PieChartSpinner />
+        <PieChart />
+      </div>
+    );
   }
 }
 function mapDispatchToProps(dispatch) {
-  return{
-    setData : () => dispatch(setData())
-  }
-  
+  return {
+    setData: () => dispatch(setData())
+  };
 }
 export default connect(null, mapDispatchToProps)(App);
