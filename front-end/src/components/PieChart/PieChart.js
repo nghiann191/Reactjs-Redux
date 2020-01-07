@@ -8,7 +8,7 @@ class PieChart extends React.Component {
   render() {
     const { data } = this.props;
     return (
-      <svg viewBox="20 20 900 900" width="700" height="700">
+      <svg viewBox="0 30 1400 400" width="700" height="300">
         <VictoryPie
           standalone={false}
           style={{ labels: { fill: "none" } }}
