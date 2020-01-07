@@ -16,6 +16,7 @@ export const setData = () => {
       .catch(error => {
         console.log(error);
       })
-      .finally(dispatch({ type: ActionTypes.HIDE_LOADING, isLoading: false }));
+      // .finally(dispatch({type: ActionTypes.SHOW_LOADING, isLoading: false}))
+      .finally(setTimeout(()=>{dispatch({ type: ActionTypes.HIDE_LOADING, isLoading: false })},5000));
   };
 };

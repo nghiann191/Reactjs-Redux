@@ -29,9 +29,7 @@ class PieChart extends React.Component {
           x={520}
           y={100}
         />
-        <text x="22" y="50">
-          Device Types
-        </text>
+        
       </svg>
     );
   }

@@ -1,6 +1,6 @@
 import {ActionTypes} from '../constants/constants';
 
-let initialState = { type: ActionTypes.SHOW_LOADING, isLoading: true };
+let initialState = {};
 export default function(state = initialState,action){
   switch (action.type){
     case ActionTypes.SHOW_LOADING:

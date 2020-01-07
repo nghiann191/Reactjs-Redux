@@ -11,8 +11,9 @@ class App extends React.Component {
   render() {
     return(
       <div>
+        <h3>Device Types</h3>
         <PieChartSpinner/>
-      <PieChart/>
+        <PieChart/>
       </div>);
   }
 }
