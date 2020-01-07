@@ -1,6 +1,7 @@
 import { ActionTypes } from "../constants/constants";
 import axios from "axios";
 
+
 export const setData = () => {
   let url = "http://localhost:8080/device_summary";
   let headers = {

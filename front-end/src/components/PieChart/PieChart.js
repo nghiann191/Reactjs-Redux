@@ -29,8 +29,7 @@ class PieChart extends React.Component {
           x={520}
           y={100}
         />
-        
-      </svg>
+    </svg>
     );
   }
 }
