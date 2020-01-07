@@ -32,5 +32,5 @@ app.get("/ranking", (req, res) => {
       { day: "Day 7", number: 2 },
     ]);
   }
-  setTimeout(getData,1000);
+  setTimeout(getData,15000);
 });

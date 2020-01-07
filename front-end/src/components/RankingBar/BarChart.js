@@ -1,27 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
-import {VictoryChart,VictoryBar} from 'victory';
+import { VictoryChart, VictoryBar } from "victory";
 
 class BarChart extends React.Component {
- 
   render() {
-    const {getDataBarChart} = this.props;
-    console.log(getDataBarChart);
+    const { getDataBarChart } = this.props;
     return (
-      <svg viewBox="0 0 800 800" width="700" height="400">
-        <VictoryChart>
+      <VictoryChart domainPadding={{ x: 15 }}>
+        
           <VictoryBar
+            standalone={false}
+            barRatio={1.2}
+            style={{ data: { fill: "#ccc" }, labels: { fill: "white" } }}
+            labels={({ datum }) => datum.y}
             horizontal
             data={getDataBarChart}
-            
+            x="day"
+            y="number"
           />
-        </VictoryChart>
-      </svg>
+        
+      </VictoryChart>
     );
   }
 }
-function mapStateToProps(state){
-  return {getDataBatChart : state.getDataBarChart};
+function mapStateToProps(state) {
+  return { getDataBarChart: state.getDataBarChart };
 }
 
 export default connect(mapStateToProps, null)(BarChart);

@@ -1,23 +1,25 @@
 import { connect } from "react-redux";
-import React from 'react';
+import React from "react";
 import BarChart from "./BarChart";
-import {getDataBarChart} from '../../actions/index';
+import { getDataBarChart } from "../../actions/index";
+import BarChartSpinner from "../Spinners/BarChartSpinner";
 
-class Ranking extends React.Component{
-  componentDidMount(){
+class Ranking extends React.Component {
+  componentDidMount() {
     this.props.getDataBarChart();
   }
   render() {
     return (
       <div>
         <h3>Ranking</h3>
-        <BarChart/>
+        <BarChartSpinner />
+        <BarChart />
       </div>
     );
   }
 }
-function mapDispatchToProps(dispatch){
-  return{
+function mapDispatchToProps(dispatch) {
+  return {
     getDataBarChart: () => dispatch(getDataBarChart())
   };
 }
