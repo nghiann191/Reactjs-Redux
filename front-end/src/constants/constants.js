@@ -1,3 +1,5 @@
 export const ActionTypes = {
-  SHOW_DATA: "SHOW_DATA"
+  SHOW_DATA: "SHOW_DATA",
+  SHOW_LOADING: "SHOW_LOADING",
+  HIDE_LOADING: "HIDE_LOADING"
 };
