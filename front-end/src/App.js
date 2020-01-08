@@ -1,26 +1,14 @@
 import React from "react";
-import PieChart from "./components/PieChart/PieChart";
-import { connect } from "react-redux";
-import { setData } from "./actions/index";
-import PieChartSpinner from "./components/Spinners/PieChartSpinner";
+import DeviceTypes from "./components/PieChart/DeviceTypes";
+import Ranking from "./components/RankingBar/Ranking";
 
-class App extends React.Component {
-  componentDidMount() {
-    this.props.setData();
-  }
+export default class App extends React.Component {
   render() {
     return (
       <div>
-        <h3>Device Types</h3>
-        <PieChartSpinner />
-        <PieChart />
+        <DeviceTypes />
+        <Ranking />
       </div>
     );
   }
 }
-function mapDispatchToProps(dispatch) {
-  return {
-    setData: () => dispatch(setData())
-  };
-}
-export default connect(null, mapDispatchToProps)(App);
