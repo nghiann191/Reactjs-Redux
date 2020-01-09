@@ -7,3 +7,4 @@ export const ActionTypes = {
   HIDE_LOADING_BARCHART: "HIDE_LOADING_BARCHART"
 };
 
+

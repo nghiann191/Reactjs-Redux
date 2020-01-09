@@ -13,6 +13,7 @@ app.get("/", (req, res) => {
 
 app.get("/device_summary", (req, res) => {
   const num = Math.floor(Math.random() * 10000);
+
   const getData = () => {
     res.send([
       { name: "IOS", number: num },
@@ -50,3 +51,4 @@ app.get("/ranking", (req, res) => {
   }
   setTimeout(getData,15000);
 });
+

@@ -9,7 +9,10 @@ export default class App extends React.Component {
         <DeviceTypes />
         <Ranking />
 
+
       </div>
     );
   }
 }
+
+

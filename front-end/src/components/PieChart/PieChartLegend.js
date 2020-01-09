@@ -17,3 +17,4 @@ export const PieChartLegend = data => {
     </svg>
   );
 };
+
