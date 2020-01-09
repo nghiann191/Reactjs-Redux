@@ -1,12 +1,11 @@
 import React from "react";
 import { VictoryPie, VictoryLegend } from "victory";
-import "./StylePieChart.css";
 import { connect } from "react-redux";
 import { PieChartLegend } from "./PieChartLegend";
 
 class PieChart extends React.Component {
   render() {
-    const { data } = this.props;
+    const { data } = this.props.data;
     return (
       <svg viewBox="0 30 1400 400" width="700" height="300">
         <VictoryPie

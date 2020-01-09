@@ -8,7 +8,7 @@ export const getDataBarChart = () => {
     axios
       .get(url)
       .then(e =>
-        dispatch({ type: ActionTypes.GET_DATA_BAR, getDataBarChart: e.data })
+        dispatch({ type: ActionTypes.GET_DATA_BAR, getDataBarChart: e.data, isLoadingBar: false })
       )
       .catch(error => console.log(error))
       .finally(() => {

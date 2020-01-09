@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 class BarChartSpinner extends React.Component {
   render() {
-    const { isLoadingBar } = this.props.isLoadingBar;
+    const { isLoadingBar } = this.props.getDataBarChart;
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
         <BeatLoader color={"blue"} size={40} loading={isLoadingBar} />
@@ -13,6 +13,6 @@ class BarChartSpinner extends React.Component {
   }
 }
 function mapStateToProps(state) {
-  return { isLoadingBar: state.isLoadingBar };
+  return { getDataBarChart: state.getDataBarChart };
 }
 export default connect(mapStateToProps)(BarChartSpinner);

@@ -6,10 +6,10 @@ import _ from 'lodash';
 
 class BarChart extends React.Component {
   render() {
-    const { getDataBarChart } = this.props;
+    const { getDataBarChart } = this.props.getDataBarChart;
     _.reverse(getDataBarChart);
     return (
-      <div style={{ width: "500px", height: "300px" }}>
+      <div style={{ width: "700px", height: "300px" }}>
         <VictoryChart domainPadding={{ x: 15 }}>
           <VictoryBar
             standalone={false}
