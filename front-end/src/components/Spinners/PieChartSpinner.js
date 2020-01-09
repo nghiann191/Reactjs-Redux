@@ -12,7 +12,7 @@ class PieChartSpinner extends React.Component {
           <BeatLoader color={"blue"} size={40} loading={isLoading} />
         </div>
         {isLoading && (
-          <div style={{ width: "200px", height: "200px", opacity: "0.3" }}>
+          <div style={{ width: "200px", height: "200px", opacity: "0.3", marginLeft:"50px" }}>
             <VictoryPie
               style={{ labels: { fill: "none" } }}
               innerRadius={100}

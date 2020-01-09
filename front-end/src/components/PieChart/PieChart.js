@@ -7,8 +7,9 @@ class PieChart extends React.Component {
   render() {
 
     const { data } = this.props.data;
+    const status = this.props.data.isLoading;
     return (
-      <svg viewBox="0 30 1400 400" width="700" height="300">
+     !status && <svg viewBox="0 30 1400 400" width="700" height="300" >
 
         <VictoryPie
           standalone={false}
