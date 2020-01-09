@@ -5,9 +5,11 @@ import { PieChartLegend } from "./PieChartLegend";
 
 class PieChart extends React.Component {
   render() {
+
     const { data } = this.props.data;
     return (
       <svg viewBox="0 30 1400 400" width="700" height="300">
+
         <VictoryPie
           standalone={false}
           style={{ labels: { fill: "none" } }}
@@ -28,8 +30,8 @@ class PieChart extends React.Component {
           x={520}
           y={100}
         />
-        
       </svg>
+
     );
   }
 }

@@ -31,5 +31,6 @@ class PieChartSpinner extends React.Component {
 }
 function mapStateToProps(state) {
   return { data: state.data };
+
 }
 export default connect(mapStateToProps)(PieChartSpinner);

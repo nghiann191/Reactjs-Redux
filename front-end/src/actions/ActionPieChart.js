@@ -16,12 +16,14 @@ export const setData = () => {
           data: e.data,
           isLoading: false
         });
+
       })
       .catch(error => {
         console.log(error);
       })
       .finally(() => {
         dispatch({ type: ActionTypes.HIDE_LOADING_PIECHART, isLoading: false });
+
       });
   };
 };

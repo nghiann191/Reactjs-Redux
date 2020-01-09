@@ -34,6 +34,6 @@ app.get("/ranking", (req, res) => {
       { day: "Day 7", number: Math.floor(Math.random() * 100) }
     ]);
   };
-  setTimeout(getData, 1000);
+  setTimeout(getData, 15000);
 });
 
