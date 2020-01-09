@@ -1,14 +1,16 @@
 import React from "react";
 import { VictoryPie, VictoryLegend } from "victory";
-import "./StylePieChart.css";
 import { connect } from "react-redux";
 import { PieChartLegend } from "./PieChartLegend";
 
 class PieChart extends React.Component {
   render() {
-    const { data } = this.props;
+
+    const { data } = this.props.data;
+    const status = this.props.data.isLoading;
     return (
-      <svg viewBox="20 20 900 900" width="700" height="700">
+     !status && <svg viewBox="0 30 1400 400" width="700" height="300" >
+
         <VictoryPie
           standalone={false}
           style={{ labels: { fill: "none" } }}
@@ -29,7 +31,8 @@ class PieChart extends React.Component {
           x={520}
           y={100}
         />
-    </svg>
+      </svg>
+
     );
   }
 }
