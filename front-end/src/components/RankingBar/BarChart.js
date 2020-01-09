@@ -7,7 +7,7 @@ import _ from "lodash";
 class BarChart extends React.Component {
   render() {
     const { getDataBarChart } = this.props.getDataBarChart;
-    _.reverse(getDataBarChart);
+    const descData = _.sortBy(getDataBarChart, ['day']).reverse();
     return (
       <div style={{ width: "700px", height: "300px" }}>
         <VictoryChart domainPadding={{ x: 15 }}>
@@ -16,7 +16,7 @@ class BarChart extends React.Component {
             barRatio={1.2}
             style={{ data: { fill: "#ccc" } }}
             horizontal
-            data={getDataBarChart}
+            data={descData}
             x="day"
             y="number"
           />
@@ -24,7 +24,7 @@ class BarChart extends React.Component {
             crossAxis
             offsetX={-10}
             style={{ tickLabels: { fill: "none" } }}
-            tickLabelComponent={<BarChartLabel data={getDataBarChart} />}
+            tickLabelComponent={<BarChartLabel data={descData} />}
           />
           <VictoryAxis
             crossAxis

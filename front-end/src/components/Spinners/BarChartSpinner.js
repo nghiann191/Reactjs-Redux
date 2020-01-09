@@ -6,7 +6,7 @@ class BarChartSpinner extends React.Component {
   render() {
     const { isLoadingBar } = this.props.getDataBarChart;
     return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", marginLeft:"220px" }}>
         <BeatLoader color={"blue"} size={40} loading={isLoadingBar} />
       </div>
     );
