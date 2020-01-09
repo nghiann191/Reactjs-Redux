@@ -36,3 +36,17 @@ app.get("/ranking", (req, res) => {
   };
   setTimeout(getData, 15000);
 });
+
+app.get("/ranking", (req, res) => {
+  const getData=() => {res.send([
+      { day: "Day 1", number: 12 },
+      { day: "Day 2", number: 5 },
+      { day: "Day 3", number: 5 },
+      { day: "Day 4", number: 4 },
+      { day: "Day 5", number: 4 },
+      { day: "Day 6", number: 4 },
+      { day: "Day 7", number: 2 },
+    ]);
+  }
+  setTimeout(getData,15000);
+});
