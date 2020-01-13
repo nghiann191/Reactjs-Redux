@@ -1,13 +1,15 @@
 import React from "react";
 import Chart from "react-apexcharts";
 import { connect } from "react-redux";
+import _ from 'lodash';
 
 class HeatChart extends React.Component {
   render() {
     const getDataHeat = this.props.getDataHeatChart;
+    const series = _.reverse(getDataHeat.getDataHeatChart);
     const options = {
       chart: {
-        height: 200,
+        height: 300,
         type: "heatmap",
         toolbar: {
           show: false
@@ -16,18 +18,7 @@ class HeatChart extends React.Component {
       dataLabels: {
         enabled: false
       },
-      title: {
-        text: "Device by hour",
-        align: "left",
-        margin: 0,
-        offsetX: 0,
-        offsetY: 0,
-        floating: false,
-        style: {
-          fontSize: "16px",
-          color: "#263238"
-        }
-      },
+      
       yaxis: {
           show: false
       },
@@ -36,9 +27,9 @@ class HeatChart extends React.Component {
     return (
         <Chart
           options={options}
-          series={getDataHeat.getDataHeatChart}
+          series={series}
           type="heatmap"
-          height="200"
+          height="300"
         />
     );
   }

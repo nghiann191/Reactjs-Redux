@@ -11,9 +11,9 @@ export default function(state = initialState, action) {
         getDataHeatChart: action.getDataHeatChart,
         isLoadingHeat: action.isLoadingHeat
       };
-    case ActionTypes.SHOW_LOADING_BARCHART:
+    case ActionTypes.SHOW_LOADING_HEATCHART:
       return { ...state, isLoadingHeat: action.isLoadingHeat };
-    case ActionTypes.HIDE_LOADING_BARCHART:
+    case ActionTypes.HIDE_LOADING_HEATCHART:
       return { ...state, isLoadingHeat: action.isLoadingHeat };
     default:
       return state;
