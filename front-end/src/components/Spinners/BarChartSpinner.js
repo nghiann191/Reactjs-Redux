@@ -15,4 +15,5 @@ class BarChartSpinner extends React.Component {
 function mapStateToProps(state) {
   return { getDataBarChart: state.getDataBarChart };
 }
+
 export default connect(mapStateToProps)(BarChartSpinner);

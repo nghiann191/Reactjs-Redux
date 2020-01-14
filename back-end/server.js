@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const _ = require('lodash');
 const app = express();
 
 app.use(cors());
@@ -13,17 +14,17 @@ app.get("/", (req, res) => {
 
 app.get("/device_summary", (req, res) => {
   const num = Math.floor(Math.random() * 10000);
-  const getData = () => {
+  const getDataPieChart = () => {
     res.send([
       { name: "IOS", number: num },
       { name: "Android", number: 10000 - num }
     ]);
   };
-  setTimeout(getData, 10000);
+  setTimeout(getDataPieChart, 10000);
 });
 
 app.get("/ranking", (req, res) => {
-  const getData = () => {
+  const getDataBarChart = () => {
     res.send([
       { day: "Day 5", number: Math.floor(Math.random() * 100) },
       { day: "Day 2", number: Math.floor(Math.random() * 100) },
@@ -34,6 +35,21 @@ app.get("/ranking", (req, res) => {
       { day: "Day 7", number: Math.floor(Math.random() * 100) }
     ]);
   };
-  setTimeout(getData, 15000);
+  setTimeout(getDataBarChart, 15000);
 });
 
+app.get("/device_by_hour" ,(req,res) => {
+  const getDataHeatChart = () => {
+    res.send(_.map(
+      ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+      (day) => ({
+        name: day,
+        data: _.map(_.range(0, 24), time => ({
+          x: `${time}:00`,
+          y: _.random(0, 2) !== 2 ? _.random(0, 30) : _.random(0, 50)
+        }))
+      })
+    ))
+  }
+  setTimeout(getDataHeatChart,5000)
+});

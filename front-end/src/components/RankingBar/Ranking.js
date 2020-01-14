@@ -23,4 +23,5 @@ function mapDispatchToProps(dispatch) {
     getDataBarChart: () => dispatch(getDataBarChart())
   };
 }
+
 export default connect(null, mapDispatchToProps)(Ranking);
