@@ -9,15 +9,7 @@ class SumaryChart extends React.Component {
     const list = dataHeat.getDataHeatChart.map(e => e.data.map(a => a.y));
     const series = [
       {
-        data: [
-          _.sum(list[0]),
-          _.sum(list[1]),
-          _.sum(list[2]),
-          _.sum(list[3]),
-          _.sum(list[4]),
-          _.sum(list[5]),
-          _.sum(list[6])
-        ]
+        data: list.map((e,index)=> _.sum(list[index]))
       }
     ];
     const options = {
