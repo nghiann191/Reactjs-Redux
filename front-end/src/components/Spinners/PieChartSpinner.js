@@ -33,4 +33,5 @@ function mapStateToProps(state) {
   return { data: state.data };
 
 }
+
 export default connect(mapStateToProps)(PieChartSpinner);

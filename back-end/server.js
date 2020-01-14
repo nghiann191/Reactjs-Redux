@@ -52,4 +52,4 @@ app.get("/device_by_hour" ,(req,res) => {
     ))
   }
   setTimeout(getDataHeatChart,5000)
-})
+});

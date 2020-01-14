@@ -39,5 +39,4 @@ class PieChart extends React.Component {
 function mapStateToProps(state) {
   return { data: state.data };
 }
-
 export default connect(mapStateToProps, null)(PieChart);
