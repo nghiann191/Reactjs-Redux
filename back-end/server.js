@@ -1,23 +1,16 @@
-<<<<<<< HEAD
-const express = require('express');
-=======
 const express = require("express");
 const cors = require("cors");
 const _ = require('lodash');
->>>>>>> dd81d8d2... ve duoc heatmap
 const app = express();
 
-const server = app.listen(5000, () => {
-    console.log(`Express running -> PORT ${server.address().port}`);
+app.use(cors());
+const server = app.listen(8080, () => {
+  console.log(`Express running -> PORT ${server.address().port}`);
 });
 
-<<<<<<< HEAD
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
-<<<<<<< HEAD
-=======
-=======
 
 app.get("/device_summary", (req, res) => {
   const num = Math.floor(Math.random() * 10000);
@@ -45,7 +38,6 @@ app.get("/ranking", (req, res) => {
   setTimeout(getDataBarChart, 15000);
 });
 
->>>>>>> 993e3665... chinh sua css
 app.get("/device_by_hour" ,(req,res) => {
   const getDataHeatChart = () => {
     res.send(_.map(
@@ -61,4 +53,3 @@ app.get("/device_by_hour" ,(req,res) => {
   }
   setTimeout(getDataHeatChart,5000)
 })
->>>>>>> dd81d8d2... ve duoc heatmap

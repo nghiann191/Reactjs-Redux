@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-
-export default class App extends React.Component {
-    render() {
-        return ("");
-    }
-}
-=======
 import React from "react";
 import DeviceTypes from "./components/PieChart/DeviceTypes";
 import Ranking from "./components/RankingBar/Ranking";
@@ -31,9 +22,5 @@ export default class App extends React.Component {
     );
   }
 }
-<<<<<<< HEAD
 
 
->>>>>>> dd81d8d2... ve duoc heatmap
-=======
->>>>>>> 993e3665... chinh sua css
