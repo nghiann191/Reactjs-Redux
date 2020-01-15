@@ -3,11 +3,13 @@ import DeviceTypes from "./components/PieChart/DeviceTypes";
 import Ranking from "./components/RankingBar/Ranking";
 import DeviceByHour from "./components/HeatChart/DeviceByHour";
 import "bootstrap/dist/css/bootstrap.min.css";
+import DateRange from "./components/DateRange/DateRange";
 
 export default class App extends React.Component {
   render() {
     return (
       <div>
+        <DateRange/>
         <DeviceTypes />
 
         <div className="row">
