@@ -21,7 +21,6 @@ class DeviceTypes extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     setData: (startDate, endDate) => dispatch(setData(startDate, endDate)),
-    setDate: (startDate, endDate) => dispatch(setDate(startDate, endDate))
   };
 }
 export default connect(null, mapDispatchToProps)(DeviceTypes);

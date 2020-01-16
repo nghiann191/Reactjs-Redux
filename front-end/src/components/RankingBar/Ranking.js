@@ -21,7 +21,6 @@ class Ranking extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     getDataBarChart: (startDate, endDate) => dispatch(getDataBarChart(startDate, endDate)),
-    setDate: (startDate, endDate) => dispatch(setDate(startDate, endDate))
   };
 }
 export default connect(null, mapDispatchToProps)(Ranking);

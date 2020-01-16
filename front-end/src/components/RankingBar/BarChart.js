@@ -45,7 +45,6 @@ class BarChart extends React.Component {
 function mapStateToProps(state) {
   return {
     getDataBarChart: state.getDataBarChart,
-    allData: state.allData
   };
 }
 
