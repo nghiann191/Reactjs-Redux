@@ -1,9 +1,8 @@
 import {ActionTypes} from '../constants/constants';
 
 const initialState = {
-  startDate: null,
-  endDate: null,
-  // allData: {}
+  startDate: new Date(),
+  endDate: new Date()
 };
 
 export default function(state = initialState, action){
@@ -13,11 +12,6 @@ export default function(state = initialState, action){
         startDate: action.startDate,
         endDate: action.endDate
       }
-    // case ActionTypes.GET_ALL_DATA:
-    //   return{
-    //     ...state,
-    //     allData: action.allData
-    //   }
     default:
       return state
   }

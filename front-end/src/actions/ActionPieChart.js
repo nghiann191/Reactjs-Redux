@@ -16,14 +16,15 @@ export const setData = (startDate, endDate) => {
           data: e.data,
           isLoading: false
         });
-
       })
       .catch(error => {
         console.log(error);
       })
       .finally(() => {
-        dispatch({ type: ActionTypes.HIDE_LOADING_PIECHART, isLoading: false });
-
+        dispatch({
+          type: ActionTypes.HIDE_LOADING_PIECHART,
+          isLoading: false
+        });
       });
   };
 };

@@ -20,7 +20,7 @@ app.get("/device_summary", (req, res) => {
       { name: "Android", number: 10000 - num }
     ]);
   };
-  setTimeout(getData, 10000);
+  setTimeout(getData, 1000);
 });
 
 app.get("/ranking", (req, res) => {

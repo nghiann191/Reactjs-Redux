@@ -6,10 +6,7 @@ import BarChartSpinner from "../Spinners/BarChartSpinner";
 
 class Ranking extends React.Component {
   componentDidMount() {
-    let {startDate, endDate} = this.props.setDate;
-    if(startDate !== null && endDate !== null){
       this.props.getDataBarChart();
-    }
   }
   render() {
     return (

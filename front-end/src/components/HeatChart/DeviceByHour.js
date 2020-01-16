@@ -9,10 +9,7 @@ import HeatChartSpinner from "../Spinners/HeatChartSpinner";
 
 class DeviceByHour extends React.Component {
   componentDidMount() {
-    let {startDate, endDate} = this.props.setDate;
-    if(startDate !== null && endDate !== null){
       this.props.getDataHeatChart();
-    }
   }
   render() {
     return (
@@ -20,7 +17,6 @@ class DeviceByHour extends React.Component {
         <h3>Device by hour</h3>
         <HeatChartSpinner />
         <div className="row">
-          
           <div className="col-md-8" style={{ padding: "0" }}>
             <HeatChart />
             <div className="note"></div>
@@ -28,7 +24,9 @@ class DeviceByHour extends React.Component {
               <div className="col">0</div>
               <div className="col">15</div>
               <div className="col">30</div>
-              <div className="col" className="note-late">50</div>
+              <div className="col">
+                <div className="note-late">50</div>  
+              </div>
             </div>
           </div>
           <div className="col-md-4" style={{ padding: "0" }}>

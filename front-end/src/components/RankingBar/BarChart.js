@@ -8,7 +8,6 @@ class BarChart extends React.Component {
   render() {
     const { getDataBarChart } = this.props.getDataBarChart;
     const status = this.props.getDataBarChart.isLoadingBar;
-    console.log(status)
     const descData = _.sortBy(getDataBarChart, ['day']).reverse();
     return (
       !status && (
