@@ -30,7 +30,7 @@ class DateRange extends React.Component{
         endDate={this.state.endDate}
         minDate={this.state.startDate}
       />
-      
+      <button type="submit" onClick={() => {this.props.setDate(this.state.startDate, this.state.endDate)}}>GO</button>
       </div>
     );
   }

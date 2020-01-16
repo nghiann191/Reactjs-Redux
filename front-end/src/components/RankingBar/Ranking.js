@@ -1,12 +1,15 @@
 import { connect } from "react-redux";
 import React from "react";
 import BarChart from "./BarChart";
-import { getDataBarChart } from "../../actions/index";
+import { getDataBarChart, setDate } from "../../actions/index";
 import BarChartSpinner from "../Spinners/BarChartSpinner";
 
 class Ranking extends React.Component {
   componentDidMount() {
-    this.props.getDataBarChart();
+    let {startDate, endDate} = this.props.setDate;
+    if(startDate !== null && endDate !== null){
+      this.props.getDataBarChart();
+    }
   }
   render() {
     return (
@@ -20,7 +23,8 @@ class Ranking extends React.Component {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    getDataBarChart: () => dispatch(getDataBarChart())
+    getDataBarChart: (startDate, endDate) => dispatch(getDataBarChart(startDate, endDate)),
+    setDate: (startDate, endDate) => dispatch(setDate(startDate, endDate))
   };
 }
 export default connect(null, mapDispatchToProps)(Ranking);

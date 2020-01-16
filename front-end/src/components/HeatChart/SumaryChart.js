@@ -58,7 +58,7 @@ class SumaryChart extends React.Component {
 }
 function mapStateToProps(state) {
   return {
-    getDataHeatChart: state.getDataHeatChart
+    getDataHeatChart: state.getDataHeatChart,
   };
 }
 

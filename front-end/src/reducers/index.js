@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   data: PieChartReducer,
   getDataBarChart: BarChartReducer,
   getDataHeatChart: HeatChartReducer,
-  date: DateRangeReducer
+  allData: DateRangeReducer
 });
 
 export default rootReducer;

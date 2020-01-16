@@ -1,8 +1,8 @@
 import { ActionTypes } from "../constants/constants";
 import axios from "axios";
 
-export const getDataBarChart = () => {
-  let url = "http://localhost:8080/ranking";
+export const getDataBarChart = (startDate, endDate) => {
+  let url = `http://localhost:8080/ranking?from=${startDate}to=${endDate}`;
   return dispatch => {
     dispatch({ type: ActionTypes.SHOW_LOADING_BARCHART, isLoadingBar: true });
     axios

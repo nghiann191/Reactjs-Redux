@@ -1,23 +1,23 @@
 import {ActionTypes} from '../constants/constants';
 
 const initialState = {
-  date : {
-    startDate: null,
-    endDate: null
-  }
+  startDate: null,
+  endDate: null,
+  // allData: {}
 };
 
 export default function(state = initialState, action){
   switch (action.type){
     case ActionTypes.SET_DATE:
       return {
-        date: {
-          startDate: action.startDate,
-          endDate: action.endDate
-        }
+        startDate: action.startDate,
+        endDate: action.endDate
       }
-    case ActionTypes.GET_ALL_DATA:
-      return{}
+    // case ActionTypes.GET_ALL_DATA:
+    //   return{
+    //     ...state,
+    //     allData: action.allData
+    //   }
     default:
       return state
   }

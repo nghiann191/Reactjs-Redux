@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getDataHeatChart } from "../../actions/index";
+import { getDataHeatChart, setDate } from "../../actions/index";
 import HeatChart from "./HeatChart";
 import SumaryChart from "./SumaryChart";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,7 +9,10 @@ import HeatChartSpinner from "../Spinners/HeatChartSpinner";
 
 class DeviceByHour extends React.Component {
   componentDidMount() {
-    this.props.getDataHeatChart();
+    let {startDate, endDate} = this.props.setDate;
+    if(startDate !== null && endDate !== null){
+      this.props.getDataHeatChart();
+    }
   }
   render() {
     return (
@@ -38,7 +41,8 @@ class DeviceByHour extends React.Component {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    getDataHeatChart: () => dispatch(getDataHeatChart())
+    getDataHeatChart: (startDate, endDate) => dispatch(getDataHeatChart(startDate, endDate)),
+    setDate: (startDate, endDate) => dispatch(setDate(startDate, endDate))
   };
 }
 
