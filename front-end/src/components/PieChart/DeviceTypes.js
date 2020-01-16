@@ -1,12 +1,12 @@
 import React from "react";
 import PieChart from "../PieChart/PieChart";
 import { connect } from "react-redux";
-import { setData} from '../../actions/index';
+import { setData } from '../../actions/index';
 import PieChartSpinner from "../Spinners/PieChartSpinner";
 
 class DeviceTypes extends React.Component {
   componentDidMount() {
-    this.props.setData();
+      this.props.setData()
   }
   render() {
     return (
@@ -20,7 +20,7 @@ class DeviceTypes extends React.Component {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    setData: () => dispatch(setData())
+    setData: (startDate, endDate) => dispatch(setData(startDate, endDate)),
   };
 }
 export default connect(null, mapDispatchToProps)(DeviceTypes);

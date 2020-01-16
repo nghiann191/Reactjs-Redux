@@ -38,18 +38,28 @@ app.get("/ranking", (req, res) => {
   setTimeout(getDataBarChart, 15000);
 });
 
-app.get("/device_by_hour" ,(req,res) => {
+app.get("/device_by_hour", (req, res) => {
   const getDataHeatChart = () => {
-    res.send(_.map(
-      ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
-      (day) => ({
-        name: day,
-        data: _.map(_.range(0, 24), time => ({
-          x: `${time}:00`,
-          y: _.random(0, 2) !== 2 ? _.random(0, 30) : _.random(0, 50)
-        }))
-      })
-    ))
-  }
-  setTimeout(getDataHeatChart,5000)
-})
+    res.send(
+      _.map(
+        [
+          "sunday",
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday",
+          "saturday"
+        ],
+        day => ({
+          name: day,
+          data: _.map(_.range(0, 24), time => ({
+            x: `${time}:00`,
+            y: _.random(0, 2) !== 2 ? _.random(0, 30) : _.random(0, 50)
+          }))
+        })
+      )
+    );
+  };
+  setTimeout(getDataHeatChart, 5000);
+});

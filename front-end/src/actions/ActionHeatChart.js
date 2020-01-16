@@ -1,8 +1,8 @@
 import { ActionTypes } from "../constants/constants";
 import axios from "axios";
 
-export const getDataHeatChart = () => {
-  let url = "http://localhost:8080/device_by_hour";
+export const getDataHeatChart = (startDate, endDate) => {
+  let url = `http://localhost:8080/device_by_hour?from=${startDate}to=${endDate}`;
   return dispatch => {
     dispatch({ type: ActionTypes.SHOW_LOADING_HEATCHART, isLoadingHeat: true });
     axios

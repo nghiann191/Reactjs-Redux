@@ -6,10 +6,11 @@ import _ from "lodash";
 class SumaryChart extends React.Component {
   render() {
     const dataHeat = this.props.getDataHeatChart;
+    const status = this.props.getDataHeatChart.isLoadingHeat;
     const list = dataHeat.getDataHeatChart.map(e => e.data.map(a => a.y));
     const series = [
       {
-        data: list.map((e,index)=> _.sum(list[index]))
+        data: list.map((e, index) => _.sum(list[index]))
       }
     ];
     const options = {
@@ -23,12 +24,11 @@ class SumaryChart extends React.Component {
       plotOptions: {
         bar: {
           horizontal: true,
-          barHeight: '100%'
+          barHeight: "100%"
         }
       },
       dataLabels: {
-        enabled: true,
-
+        enabled: true
       },
       colors: ["#589e71"],
       xaxis: {
@@ -44,15 +44,17 @@ class SumaryChart extends React.Component {
         labels: {
           offsetY: 3,
           style: {
-            fontSize: '13px'
+            fontSize: "13px"
           }
         }
       }
     };
     return (
-      <div style={{ width: "200px" }}>
-        <Chart options={options} series={series} type="bar" height="260" />
-      </div>
+      !status && (
+        <div style={{ width: "200px" }}>
+          <Chart options={options} series={series} type="bar" height="260" />
+        </div>
+      )
     );
   }
 }

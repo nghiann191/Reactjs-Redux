@@ -1,8 +1,8 @@
 import { ActionTypes } from "../constants/constants";
 import axios from "axios";
 
-export const setData = () => {
-  let url = "http://localhost:8080/device_summary";
+export const setData = (startDate, endDate) => {
+  let url = `http://localhost:8080/device_summary?from=${startDate}to=${endDate}`;
   let headers = {
     token: localStorage.getItem("token")
   };
@@ -16,14 +16,15 @@ export const setData = () => {
           data: e.data,
           isLoading: false
         });
-
       })
       .catch(error => {
         console.log(error);
       })
       .finally(() => {
-        dispatch({ type: ActionTypes.HIDE_LOADING_PIECHART, isLoading: false });
-
+        dispatch({
+          type: ActionTypes.HIDE_LOADING_PIECHART,
+          isLoading: false
+        });
       });
   };
 };

@@ -7,9 +7,11 @@ import _ from "lodash";
 class BarChart extends React.Component {
   render() {
     const { getDataBarChart } = this.props.getDataBarChart;
+    const status = this.props.getDataBarChart.isLoadingBar;
     const descData = _.sortBy(getDataBarChart, ['day']).reverse();
     return (
-      <div style={{ width: "700px", height: "300px" }}>
+      !status && (
+        <div style={{ width: "700px", height: "300px" }}>
         <VictoryChart domainPadding={{ x: 15 }}>
           <VictoryBar
             standalone={false}
@@ -36,11 +38,14 @@ class BarChart extends React.Component {
           <VictoryLabel x={350} y={30} standalone={false} text="Number" />
         </VictoryChart>
       </div>
+      )
     );
   }
 }
 function mapStateToProps(state) {
-  return { getDataBarChart: state.getDataBarChart };
+  return {
+    getDataBarChart: state.getDataBarChart,
+  };
 }
 
 export default connect(mapStateToProps, null)(BarChart);

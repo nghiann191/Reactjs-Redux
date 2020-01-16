@@ -1,12 +1,13 @@
 import React from "react";
 import Chart from "react-apexcharts";
 import { connect } from "react-redux";
-import _ from 'lodash';
+import _ from "lodash";
 
 class HeatChart extends React.Component {
   render() {
     const getDataHeat = this.props.getDataHeatChart;
-    const series = _.reverse(getDataHeat.getDataHeatChart);
+    const status = this.props.getDataHeatChart.isLoadingHeat;
+    const series = getDataHeat.getDataHeatChart;
     const options = {
       chart: {
         height: 300,
@@ -18,19 +19,21 @@ class HeatChart extends React.Component {
       dataLabels: {
         enabled: false
       },
-      
+
       yaxis: {
-          show: false
+        show: false
       },
       colors: ["#6232ca"]
     };
     return (
+      !status && (
         <Chart
           options={options}
-          series={series}
+          series={_.reverse(series)}
           type="heatmap"
           height="300"
         />
+      )
     );
   }
 }
