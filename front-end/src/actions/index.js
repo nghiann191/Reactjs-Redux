@@ -7,4 +7,3 @@ export { setData };
 export { getDataBarChart };
 export { getDataHeatChart};
 export {setDate}
-

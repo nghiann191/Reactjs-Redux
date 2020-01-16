@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getDataHeatChart, setDate } from "../../actions/index";
+import { getDataHeatChart } from "../../actions/index";
 import HeatChart from "./HeatChart";
 import SumaryChart from "./SumaryChart";
 import "bootstrap/dist/css/bootstrap.min.css";

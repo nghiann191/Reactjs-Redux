@@ -1,7 +1,7 @@
 import React from "react";
 import PieChart from "../PieChart/PieChart";
 import { connect } from "react-redux";
-import { setData, setDate} from '../../actions/index';
+import { setData } from '../../actions/index';
 import PieChartSpinner from "../Spinners/PieChartSpinner";
 
 class DeviceTypes extends React.Component {
