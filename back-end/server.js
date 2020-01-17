@@ -13,14 +13,17 @@ app.get("/", (req, res) => {
 });
 
 app.get("/device_summary", (req, res) => {
-  const num = Math.floor(Math.random() * 10000);
   const getDataPieChart = () => {
     res.send([
-      { name: "IOS", number: num },
-      { name: "Android", number: 10000 - num }
+      { name: "IOS", number: _.random(0,1000) },
+      { name: "Android", number: _.random(0,1000) },
+      { name: "Windows", number: _.random(0,1000)},
+      { name: "Os X", number: _.random(0,1000)},
+      { name: "Linux", number: _.random(0,1000)},
+      { name: "Unknown", number: _.random(0,1000)}
     ]);
   };
-  setTimeout(getDataPieChart, 10000);
+  setTimeout(getDataPieChart, 1000);
 });
 
 app.get("/ranking", (req, res) => {
