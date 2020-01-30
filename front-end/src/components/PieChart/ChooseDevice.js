@@ -1,11 +1,14 @@
 import React from "react";
 import './PieChartStyle.css';
+// import _ from 'lodash';
+// import { setDevice } from "../../actions";
+// import { connect } from "react-redux";
 
 class ChooseDevice extends React.Component {
   state = {
     isOpen: false,
     isSelected: false,
-    listSelected: []
+    listSelected: this.props.data.map(e => e.name)
   };
 
   handleSelect = ( title) => {
@@ -52,7 +55,7 @@ class ChooseDevice extends React.Component {
     const { placeholder } = this.props;
     const { listSelected, isOpen } = this.state;
     const filteredData = this.filterData();
-
+    console.log(filteredData, listSelected)
     return (
       <div className='option-custom'>
         <div className='select-input select-input--multiple' >
@@ -65,7 +68,7 @@ class ChooseDevice extends React.Component {
                   {item === null ? placeholder : item}
                 </span>
                 <span onClick={() => this.handleRemoveItem(index)}>
-                  X
+                  x
                 </span>
               </div>
             ))}
@@ -87,9 +90,16 @@ class ChooseDevice extends React.Component {
           </div>
           : ''
         }
+        
       </div>
     );
   }
 }
 
+// function mapDispatchToProps(dispatch){
+//   return {
+//     setDevice: (data, startDate, endDate) => dispatch(setDevice(data, startDate, endDate))
+//   }
+// }
+// export default connect(null, mapDispatchToProps)(ChooseDevice);
 export default ChooseDevice;

@@ -7,12 +7,11 @@ import ChooseDevice from "./ChooseDevice";
 class PieChart extends React.Component {
   render() {
     const { data } = this.props.data;
-    console.log(data)
     const status = this.props.data.isLoading;
     return (
       !status && (
         <div>
-          <ChooseDevice data={data}  />
+          <ChooseDevice data={data} />
           <svg viewBox="0 30 1400 700" width="700" height="700">
             <VictoryPie
               standalone={false}
