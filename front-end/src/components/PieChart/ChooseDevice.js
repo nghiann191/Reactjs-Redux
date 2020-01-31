@@ -1,105 +1,79 @@
 import React from "react";
-import './PieChartStyle.css';
-// import _ from 'lodash';
-// import { setDevice } from "../../actions";
-// import { connect } from "react-redux";
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Table
+} from "reactstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import _ from 'lodash';
 
 class ChooseDevice extends React.Component {
   state = {
-    isOpen: false,
-    isSelected: false,
-    listSelected: this.props.data.map(e => e.name)
+    modal: false,
+    tick: true
   };
-
-  handleSelect = ( title) => {
-    const {listSelected} = this.state;
-
-    if (!this.state.isOpen) {
-      document.addEventListener('click', this.handleOutsideClick, false);
-    } else {
-      document.removeEventListener('click', this.handleOutsideClick, false);
-    }
-
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-      isSelected: true,
-      listSelected: listSelected.concat(title),
-    }));
+  toggle = () => {
+    this.setState({ modal: !this.state.modal });
   };
-
-  handleRemoveItem(index) {
-    const { listSelected } = this.state;
-    listSelected.splice(index, 1);
-    this.setState({
-      listSelected: listSelected
-    });
-  }
-
-  handleOpen = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
-  }
-
-   handleOutsideClick = () => {
-    this.handleSelect();
+  checkTick = () => {
+    const data = this.props.data;
+    this.setState({ tick: !this.state.tick });
   };
+  listDevice = () => {
 
-  filterData = () => {
-    const { data } = this.props;
-    const { listSelected } = this.state;
-    return data.filter(item => !listSelected.find(title => item.sportTitle === title))
-  }
-
-   render() {
-    const { placeholder } = this.props;
-    const { listSelected, isOpen } = this.state;
-    const filteredData = this.filterData();
-    console.log(filteredData, listSelected)
+  };
+  render() {
     return (
-      <div className='option-custom'>
-        <div className='select-input select-input--multiple' >
-          <div className='selected-list'>
-            {listSelected.map((item, index) => (
-              <div className='selected-item'>
-                <span 
-                  key={index} 
-                >
-                  {item === null ? placeholder : item}
-                </span>
-                <span onClick={() => this.handleRemoveItem(index)}>
-                  x
-                </span>
-              </div>
-            ))}
-            <div className="select-click" onClick={this.handleOpen} />
-          </div>
-        </div>
-
-         {isOpen ?
-          <div className='select-list'>
-            {filteredData.map((item, index) => (
-              <div
-                key={index}
-                onClick={() => this.handleSelect( filteredData[index].name)}
-                className='select-item'
-              >
-                <span className='select-title'>{item.name}</span>
-              </div>
-            ))}
-          </div>
-          : ''
-        }
-        
+      <div>
+        <Button color="danger" onClick={this.toggle}>
+          +
+        </Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle}>List Devices</ModalHeader>
+          <ModalBody>
+            {this.props.data.map((e, index) => {
+              return (
+                <div className="row" key={index}>
+                  <div className="col-md-8">
+                    {e.name}
+                  </div>
+                  <div className="col-md-4">
+                    <input type="checkbox" checked={this.state.tick} onChange={this.checkTick}/>
+                  </div>
+                </div>
+              );
+            })}
+            {/* <Table>
+              <tbody>
+              {this.props.data.map((e, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{++index}.</td>
+                    <td>{e.name}</td>
+                    <td>
+                      <input type="checkbox" checked={this.state.tick} onChange={this.checkTick}/>
+                    </td>
+                  </tr>
+                );
+              })}
+              </tbody>
+            </Table> */}
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggle}>
+              Save changes
+            </Button>{" "}
+            <Button color="secondary" onClick={this.toggle}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }
 }
 
-// function mapDispatchToProps(dispatch){
-//   return {
-//     setDevice: (data, startDate, endDate) => dispatch(setDevice(data, startDate, endDate))
-//   }
-// }
-// export default connect(null, mapDispatchToProps)(ChooseDevice);
 export default ChooseDevice;

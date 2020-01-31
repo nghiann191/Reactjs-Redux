@@ -3,13 +3,11 @@ import axios from "axios";
 
 export const setData = (startDate, endDate) => {
   let url = `http://localhost:8080/device_summary?from=${startDate}to=${endDate}`;
-  let headers = {
-    token: localStorage.getItem("token")
-  };
+  
   return dispatch => {
     dispatch({ type: ActionTypes.SHOW_LOADING_PIECHART, isLoading: true });
     axios
-      .get(url, { headers })
+      .get(url)
       .then(e => {
         dispatch({
           type: ActionTypes.SHOW_DATA,
