@@ -21,14 +21,14 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/device_summary", (req, res) => {
+app.get("/device_summary/", (req, res) => {
   const getDataPieChart = () => {
     res.send(dataPieChart);
   };
   setTimeout(getDataPieChart, 1000);
 });
 
-app.get("/ranking", (req, res) => {
+app.get("/ranking/", (req, res) => {
   const getDataBarChart = () => {
     res.send([
       { day: "Day 5", number: Math.floor(Math.random() * 100) },
@@ -43,7 +43,7 @@ app.get("/ranking", (req, res) => {
   setTimeout(getDataBarChart, 15000);
 });
 
-app.get("/device_by_hour", (req, res) => {
+app.get("/device_by_hour/", (req, res) => {
   const getDataHeatChart = () => {
     res.send(
       _.map(
@@ -69,7 +69,7 @@ app.get("/device_by_hour", (req, res) => {
   setTimeout(getDataHeatChart, 5000);
 });
 
-app.get("/device_summary_choose_device", (req, res) => {
+app.get("/device_summary_choose_device/", (req, res) => {
   const DeviceChoose = req.query.data;
   if(DeviceChoose !== undefined){
     let listDevice = req.query.data.isHide;
@@ -85,6 +85,6 @@ app.get("/device_summary_choose_device", (req, res) => {
   }
 })
 
-app.get("/get_name_device", (req, res) => {
+app.get("/get_name_device/", (req, res) => {
   res.send(nameDevices);
 })

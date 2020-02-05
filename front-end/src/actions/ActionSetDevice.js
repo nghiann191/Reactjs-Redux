@@ -7,11 +7,20 @@ export const setDevice = (listDevice = [], startDate, endDate) => {
       dispatch({ type: ActionTypes.SHOW_LOADING_PIECHART, isLoading: true });
       axios.get(url)
       .then(e => {
-        dispatch({
-          type: ActionTypes.SHOW_DATA,
-          data: e.data,
-          isLoading: false
-        });
+        if(listDevice === null){
+          dispatch({
+            type: ActionTypes.SHOW_DATA,
+            data: e.data,
+            isLoading: false
+          });
+        }
+        else{
+          dispatch({
+            type: ActionTypes.SHOW_DATA,
+            data: listDevice,
+            isLoading: false
+          });
+        }
       })
       .catch(error => {
         console.log(error);
@@ -22,7 +31,6 @@ export const setDevice = (listDevice = [], startDate, endDate) => {
           isLoading: false
         });
       });
-      dispatch({type: ActionTypes.SET_DEVICES, listDevice: listDevice});
     }
     
 }

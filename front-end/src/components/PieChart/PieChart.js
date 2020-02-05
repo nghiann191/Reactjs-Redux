@@ -6,6 +6,7 @@ import ChooseDevice from "./ChooseDevice";
 
 class PieChart extends React.Component {
   render() {
+    console.log(this.props)
     const { data } = this.props.data;
     const status = this.props.data.isLoading;
     return (

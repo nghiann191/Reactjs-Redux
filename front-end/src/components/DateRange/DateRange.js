@@ -13,6 +13,7 @@ class DateRange extends React.Component{
     }
   }
   render() {
+    console.log(this.props.setDate(this.state.startDate, this.state.endDate))
     return (
       <div>
         <DatePicker
@@ -30,7 +31,7 @@ class DateRange extends React.Component{
         endDate={this.state.endDate}
         minDate={this.state.startDate}
       />
-      <button type="submit" style={{backgroundColor: "#5ed8ae", width:"40px"}} onClick={() => {this.props.setDate(this.state.startDate, this.state.endDate)}}>GO</button>
+      {/* <button type="submit" style={{backgroundColor: "#5ed8ae", width:"40px"}} onClick={() => {this.props.setDate(this.state.startDate, this.state.endDate)}}>GO</button> */}
       </div>
     );
   }

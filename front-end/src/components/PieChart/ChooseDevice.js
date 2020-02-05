@@ -13,24 +13,32 @@ import { setDevice } from "../../actions/ActionSetDevice";
 import { connect } from "react-redux";
 
 class ChooseDevice extends React.Component {
-  state = {
-    modal: false,
-    listDevice: this.props.data.data
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      modal: false,
+    listDevice: this.props.data.listDevice,
+    startDate: new Date(),
+    endDate: new Date()
+    }
+  }
+  
   toggle = () => {
-    this.setState({ modal: !this.state.modal });
+    this.setState({ modal: !this.state.modal});
+    if(this.state.listDevice !== this.props.data.listDevice && this.state.modal){
+      this.props.setDevice(this.state.listDevice, this.state.startDate, this.state.endDate)
+    }
   };
   checkTick = (item, index) => {
-    this.setState([
+    this.setState({listDevice : [
       ..._.slice(this.state.listDevice, 0, index),
       {...item, isHide: !item.isHide},
       ..._.slice(this.state.listDevice, index+1)
-    ])
+    ]})
     ;
   };
   
   render() {
-    console.log(this.state.listDevice)
     return (
       <div>
         <Button color="danger" onClick={this.toggle}>
@@ -56,9 +64,6 @@ class ChooseDevice extends React.Component {
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>
               Save changes
-            </Button>{" "}
-            <Button color="secondary" onClick={this.toggle}>
-              Cancel
             </Button>
           </ModalFooter>
         </Modal>
@@ -68,12 +73,12 @@ class ChooseDevice extends React.Component {
 }
 const mapStateToProps = (state) => {
   return{
-    data: state.data
+    data: state.setDevice
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    setList: (data, startDate, endDate) => {dispatch(setDevice(data, startDate, endDate))}
+    setDevice: (data, startDate, endDate) => {dispatch(setDevice(data, startDate, endDate))}
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ChooseDevice);
