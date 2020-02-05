@@ -3,6 +3,15 @@ const cors = require("cors");
 const _ = require('lodash');
 const app = express();
 
+let dataPieChart = [
+  { name: "IOS", number: _.random(0,1000), isHide: true },
+  { name: "Android", number: _.random(0,1000), isHide: true  },
+  { name: "Windows", number: _.random(0,1000), isHide: true },
+  { name: "Os X", number: _.random(0,1000), isHide: true },
+  { name: "Linux", number: _.random(0,1000), isHide: true },
+  { name: "Unknown", number: _.random(0,1000), isHide: true }
+]
+let nameDevices = _.map(dataPieChart, (e) => ({name : e.name}))
 app.use(cors());
 const server = app.listen(8080, () => {
   console.log(`Express running -> PORT ${server.address().port}`);
@@ -14,14 +23,7 @@ app.get("/", (req, res) => {
 
 app.get("/device_summary", (req, res) => {
   const getDataPieChart = () => {
-    res.send([
-      { name: "IOS", number: _.random(0,1000) },
-      { name: "Android", number: _.random(0,1000) },
-      { name: "Windows", number: _.random(0,1000)},
-      { name: "Os X", number: _.random(0,1000)},
-      { name: "Linux", number: _.random(0,1000)},
-      { name: "Unknown", number: _.random(0,1000)}
-    ]);
+    res.send(dataPieChart);
   };
   setTimeout(getDataPieChart, 1000);
 });
@@ -66,3 +68,23 @@ app.get("/device_by_hour", (req, res) => {
   };
   setTimeout(getDataHeatChart, 5000);
 });
+
+app.get("/device_summary_choose_device", (req, res) => {
+  const DeviceChoose = req.query.data;
+  if(DeviceChoose !== undefined){
+    let listDevice = req.query.data.isHide;
+    let dataChooseDevice = _.map(dataPieChart, (e, index) => ({...e, isHide: listDevice[index] === 'true'}));
+    setTimeout(() => {
+      res.send(dataChooseDevice);
+    }, 2000);
+  }
+  else{
+    setTimeout(() => {
+      res.send(dataPieChart);
+    }, 2000);
+  }
+})
+
+app.get("/get_name_device", (req, res) => {
+  res.send(nameDevices);
+})

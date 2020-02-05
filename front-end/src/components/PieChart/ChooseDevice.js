@@ -4,28 +4,33 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
-  Table
+  ModalFooter
 } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import _ from 'lodash';
+import {FaCheck} from 'react-icons/fa';
+import { setDevice } from "../../actions/ActionSetDevice";
+import { connect } from "react-redux";
 
 class ChooseDevice extends React.Component {
   state = {
     modal: false,
-    tick: true
+    listDevice: this.props.data.data
   };
   toggle = () => {
     this.setState({ modal: !this.state.modal });
   };
-  checkTick = () => {
-    const data = this.props.data;
-    this.setState({ tick: !this.state.tick });
+  checkTick = (item, index) => {
+    this.setState([
+      ..._.slice(this.state.listDevice, 0, index),
+      {...item, isHide: !item.isHide},
+      ..._.slice(this.state.listDevice, index+1)
+    ])
+    ;
   };
-  listDevice = () => {
-
-  };
+  
   render() {
+    console.log(this.state.listDevice)
     return (
       <div>
         <Button color="danger" onClick={this.toggle}>
@@ -34,33 +39,19 @@ class ChooseDevice extends React.Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>List Devices</ModalHeader>
           <ModalBody>
-            {this.props.data.map((e, index) => {
+            {_.map(this.state.listDevice,(e, index) => {
               return (
-                <div className="row" key={index}>
+                <div className="row" key={index} style={{cursor:"pointer"}} onClick={() => this.checkTick(e, index)}>
                   <div className="col-md-8">
                     {e.name}
                   </div>
-                  <div className="col-md-4">
-                    <input type="checkbox" checked={this.state.tick} onChange={this.checkTick}/>
-                  </div>
+                  {e.isHide && <div className="col-md-4">
+                    <FaCheck />
+                  </div>}
                 </div>
               );
             })}
-            {/* <Table>
-              <tbody>
-              {this.props.data.map((e, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{++index}.</td>
-                    <td>{e.name}</td>
-                    <td>
-                      <input type="checkbox" checked={this.state.tick} onChange={this.checkTick}/>
-                    </td>
-                  </tr>
-                );
-              })}
-              </tbody>
-            </Table> */}
+            
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>
@@ -75,5 +66,14 @@ class ChooseDevice extends React.Component {
     );
   }
 }
-
-export default ChooseDevice;
+const mapStateToProps = (state) => {
+  return{
+    data: state.data
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setList: (data, startDate, endDate) => {dispatch(setDevice(data, startDate, endDate))}
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ChooseDevice);
