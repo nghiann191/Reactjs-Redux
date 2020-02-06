@@ -1,20 +1,21 @@
-import {ActionTypes} from '../constants/constants';
-import axios from 'axios';
+import { ActionTypes } from "../constants/constants";
+import axios from "axios";
+import _ from "lodash";
 
 export const setDevice = (listDevice = [], startDate, endDate) => {
-  let url = `http://localhost:8080/device_summary_choose_device?from=${startDate}to=${endDate}`
+  let url = `http://localhost:8080/device_summary_choose_device?from=${startDate}to=${endDate}`;
   return dispatch => {
-      dispatch({ type: ActionTypes.SHOW_LOADING_PIECHART, isLoading: true });
-      axios.get(url)
+    dispatch({ type: ActionTypes.SHOW_LOADING_PIECHART, isLoading: true });
+    axios
+      .get(url)
       .then(e => {
-        if(listDevice === null){
+        if (_.isEqual(listDevice.length, 0)) {
           dispatch({
             type: ActionTypes.SHOW_DATA,
             data: e.data,
             isLoading: false
           });
-        }
-        else{
+        } else {
           dispatch({
             type: ActionTypes.SHOW_DATA,
             data: listDevice,
@@ -31,6 +32,5 @@ export const setDevice = (listDevice = [], startDate, endDate) => {
           isLoading: false
         });
       });
-    }
-    
-}
+  };
+};

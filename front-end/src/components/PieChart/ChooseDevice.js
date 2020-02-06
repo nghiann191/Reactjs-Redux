@@ -1,43 +1,45 @@
 import React from "react";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter
-} from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import _ from 'lodash';
-import {FaCheck} from 'react-icons/fa';
+import _ from "lodash";
+import { FaCheck } from "react-icons/fa";
 import { setDevice } from "../../actions/ActionSetDevice";
 import { connect } from "react-redux";
 
 class ChooseDevice extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       modal: false,
-    listDevice: this.props.data.listDevice,
-    startDate: new Date(),
-    endDate: new Date()
-    }
+      listDevice: this.props.data.listDevice,
+      startDate: new Date(),
+      endDate: new Date()
+    };
   }
-  
+
   toggle = () => {
-    this.setState({ modal: !this.state.modal});
-    if(this.state.listDevice !== this.props.data.listDevice && this.state.modal){
-      this.props.setDevice(this.state.listDevice, this.state.startDate, this.state.endDate)
+    this.setState({ modal: !this.state.modal });
+    if (
+      this.state.listDevice !== this.props.data.listDevice &&
+      this.state.modal
+    ) {
+      this.props.setDevice(
+        this.state.listDevice,
+        this.state.startDate,
+        this.state.endDate
+      );
     }
   };
   checkTick = (item, index) => {
-    this.setState({listDevice : [
-      ..._.slice(this.state.listDevice, 0, index),
-      {...item, isHide: !item.isHide},
-      ..._.slice(this.state.listDevice, index+1)
-    ]})
-    ;
+    this.setState({
+      listDevice: [
+        ..._.slice(this.state.listDevice, 0, index),
+        { ...item, isHide: !item.isHide },
+        ..._.slice(this.state.listDevice, index + 1)
+      ]
+    });
   };
-  
+
   render() {
     return (
       <div>
@@ -47,19 +49,23 @@ class ChooseDevice extends React.Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>List Devices</ModalHeader>
           <ModalBody>
-            {_.map(this.state.listDevice,(e, index) => {
+            {_.map(this.state.listDevice, (e, index) => {
               return (
-                <div className="row" key={index} style={{cursor:"pointer"}} onClick={() => this.checkTick(e, index)}>
-                  <div className="col-md-8">
-                    {e.name}
-                  </div>
-                  {e.isHide && <div className="col-md-4">
-                    <FaCheck />
-                  </div>}
+                <div
+                  className="row"
+                  key={index}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => this.checkTick(e, index)}
+                >
+                  <div className="col-md-8">{e.name}</div>
+                  {e.isHide && (
+                    <div className="col-md-4">
+                      <FaCheck />
+                    </div>
+                  )}
                 </div>
               );
             })}
-            
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>
@@ -71,14 +77,16 @@ class ChooseDevice extends React.Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return{
-    data: state.setDevice
-  }
-}
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = state => {
   return {
-    setDevice: (data, startDate, endDate) => {dispatch(setDevice(data, startDate, endDate))}
-  }
-}
+    data: state.setDevice
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    setDevice: (data, startDate, endDate) => {
+      dispatch(setDevice(data, startDate, endDate));
+    }
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(ChooseDevice);

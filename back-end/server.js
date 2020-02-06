@@ -72,8 +72,8 @@ app.get("/device_by_hour/", (req, res) => {
 app.get("/device_summary_choose_device/", (req, res) => {
   const DeviceChoose = req.query.data;
   if(DeviceChoose !== undefined){
-    let listDevice = req.query.data.isHide;
-    let dataChooseDevice = _.map(dataPieChart, (e, index) => ({...e, isHide: listDevice[index] === 'true'}));
+    const listDevice = req.query.data.isHide;
+    const dataChooseDevice = _.map(dataPieChart, (e, index) => ({...e, isHide: listDevice[index] === 'true'}));
     setTimeout(() => {
       res.send(dataChooseDevice);
     }, 2000);
@@ -83,8 +83,4 @@ app.get("/device_summary_choose_device/", (req, res) => {
       res.send(dataPieChart);
     }, 2000);
   }
-})
-
-app.get("/get_name_device/", (req, res) => {
-  res.send(nameDevices);
 })
