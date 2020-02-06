@@ -70,8 +70,8 @@ app.get("/device_by_hour/", (req, res) => {
 });
 
 app.get("/device_summary_choose_device/", (req, res) => {
-  const DeviceChoose = req.query.data;
-  if(DeviceChoose !== undefined){
+  const deviceChoose = req.query.data;
+  if(deviceChoose !== undefined){
     const listDevice = req.query.data.isHide;
     const dataChooseDevice = _.map(dataPieChart, (e, index) => ({...e, isHide: listDevice[index] === 'true'}));
     setTimeout(() => {

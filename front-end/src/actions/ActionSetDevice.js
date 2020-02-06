@@ -9,19 +9,11 @@ export const setDevice = (listDevice = [], startDate, endDate) => {
     axios
       .get(url)
       .then(e => {
-        if (_.isEqual(listDevice.length, 0)) {
-          dispatch({
-            type: ActionTypes.SHOW_DATA,
-            data: e.data,
-            isLoading: false
-          });
-        } else {
-          dispatch({
-            type: ActionTypes.SHOW_DATA,
-            data: listDevice,
-            isLoading: false
-          });
-        }
+        dispatch({
+          type: ActionTypes.SHOW_DATA,
+          data: _.isEqual(listDevice.length, 0) ? e.data : listDevice,
+          isLoading: false
+        });
       })
       .catch(error => {
         console.log(error);
