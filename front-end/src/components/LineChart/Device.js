@@ -2,6 +2,7 @@ import React from 'react';
 import LineChart from './LineChart';
 import { getDataLineChart } from '../../actions';
 import { connect } from 'react-redux';
+import LineChartSpinner from '../Spinners/LineChartSpinner';
 
 class Device extends React.Component{
   componentDidMount(){
@@ -11,6 +12,7 @@ class Device extends React.Component{
     return (
       <div>
         <h3>Device</h3>
+        <LineChartSpinner />
         <LineChart/>
       </div>
     );

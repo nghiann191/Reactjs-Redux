@@ -1,32 +1,10 @@
 const express = require("express");
 const cors = require("cors");
-const _ = require('lodash');
-const moment = require('moment');
+const _ = require("lodash");
+const moment = require("moment");
 const app = express();
 app.use(cors());
 
-let dataPieChart = [
-  { name: "IOS", number: _.random(0,1000), isHide: true },
-  { name: "Android", number: _.random(0,1000), isHide: true  },
-  { name: "Windows", number: _.random(0,1000), isHide: true },
-  { name: "Os X", number: _.random(0,1000), isHide: true },
-  { name: "Linux", number: _.random(0,1000), isHide: true },
-  { name: "Unknown", number: _.random(0,1000), isHide: true }
-];
-const dataLineChartA = [];
-for(let i=0; i<30; i++){
-  dataLineChartA.push({
-    x: moment().add(i, 'days').format('LLLL'),
-    y: _.random(50, 100)
-  })
-}
-const dataLineChartI = [];
-for(let i=0; i<30; i++){
-  dataLineChartI.push({
-    x: moment().add(i, 'days').format('LLLL'),
-    y: _.random(50, 100)
-  })
-}
 const server = app.listen(8080, () => {
   console.log(`Express running -> PORT ${server.address().port}`);
 });
@@ -36,6 +14,14 @@ app.get("/", (req, res) => {
 });
 
 app.get("/device_summary/", (req, res) => {
+  let dataPieChart = [
+    { name: "IOS", number: _.random(0, 1000), isHide: true },
+    { name: "Android", number: _.random(0, 1000), isHide: true },
+    { name: "Windows", number: _.random(0, 1000), isHide: true },
+    { name: "Os X", number: _.random(0, 1000), isHide: true },
+    { name: "Linux", number: _.random(0, 1000), isHide: true },
+    { name: "Unknown", number: _.random(0, 1000), isHide: true }
+  ];
   const getDataPieChart = () => {
     res.send(dataPieChart);
   };
@@ -84,15 +70,25 @@ app.get("/device_by_hour/", (req, res) => {
 });
 
 app.get("/device_summary_choose_device/", (req, res) => {
+  let dataPieChart = [
+    { name: "IOS", number: _.random(0, 1000), isHide: true },
+    { name: "Android", number: _.random(0, 1000), isHide: true },
+    { name: "Windows", number: _.random(0, 1000), isHide: true },
+    { name: "Os X", number: _.random(0, 1000), isHide: true },
+    { name: "Linux", number: _.random(0, 1000), isHide: true },
+    { name: "Unknown", number: _.random(0, 1000), isHide: true }
+  ];
   const deviceChoose = req.query.data;
-  if(deviceChoose !== undefined){
+  if (deviceChoose !== undefined) {
     const listDevice = req.query.data.isHide;
-    const dataChooseDevice = _.map(dataPieChart, (e, index) => ({...e, isHide: listDevice[index] === 'true'}));
+    const dataChooseDevice = _.map(dataPieChart, (e, index) => ({
+      ...e,
+      isHide: listDevice[index] === "true"
+    }));
     setTimeout(() => {
       res.send(dataChooseDevice);
     }, 10000);
-  }
-  else{
+  } else {
     setTimeout(() => {
       res.send(dataPieChart);
     }, 10000);
@@ -100,11 +96,29 @@ app.get("/device_summary_choose_device/", (req, res) => {
 });
 
 app.get("/device_line/", (req, res) => {
+  const dataLineChartA = [];
+  for (let i = 0; i < 30; i++) {
+    dataLineChartA.push({
+      x: moment()
+        .add(i, "days")
+        .format("DD-MM-YYYY"),
+      y: _.random(50, 100)
+    });
+  }
+  const dataLineChartI = [];
+  for (let i = 0; i < 30; i++) {
+    dataLineChartI.push({
+      x: moment()
+        .add(i, "days")
+        .format("DD-MM-YYYY"),
+      y: _.random(50, 100)
+    });
+  }
   const dataLineChart = [
-    {name: 'Android', data: dataLineChartA},
-    {name: 'IOS', data: dataLineChartI}
+    { name: "Android", data: dataLineChartA },
+    { name: "IOS", data: dataLineChartI }
   ];
-  setTimeout(() =>{
+  setTimeout(() => {
     res.send(dataLineChart);
-  }, 700)
-})
+  }, 700);
+});
