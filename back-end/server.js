@@ -97,20 +97,20 @@ app.get("/device_summary_choose_device/", (req, res) => {
 
 app.get("/device_line/", (req, res) => {
   const dataLineChartA = [];
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 365; i++) {
     dataLineChartA.push({
       x: moment()
         .add(i, "days")
-        .format("DD-MM-YYYY"),
+        .format("LLLL"),
       y: _.random(50, 100)
     });
   }
   const dataLineChartI = [];
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 365; i++) {
     dataLineChartI.push({
       x: moment()
         .add(i, "days")
-        .format("DD-MM-YYYY"),
+        .format("LLLL"),
       y: _.random(50, 100)
     });
   }
@@ -120,5 +120,5 @@ app.get("/device_line/", (req, res) => {
   ];
   setTimeout(() => {
     res.send(dataLineChart);
-  }, 700);
+  }, 7000);
 });
