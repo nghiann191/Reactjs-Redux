@@ -1,47 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { setDate } from "../../actions";
 import { connect } from "react-redux";
 
-class DateRange extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      startDate: new Date(),
-      endDate: new Date()
-    };
-  }
-  render() {
+const DateRange = (props) => {
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date())
     return (
       <div>
         <DatePicker
-          selected={this.state.startDate}
-          onChange={startDate => this.setState({ startDate })}
+          selected={startDate}
+          onChange={startDate => setStartDate(startDate)}
           selectsStart
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}
+          startDate={startDate}
+          endDate={endDate}
         />
         <DatePicker
-          selected={this.state.endDate}
-          onChange={endDate => this.setState({ endDate })}
+          selected={endDate}
+          onChange={endDate => setEndDate(endDate)}
           selectsEnd
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}
-          minDate={this.state.startDate}
+          startDate={startDate}
+          endDate={endDate}
+          minDate={startDate}
         />
         <button
           type="submit"
           style={{ backgroundColor: "#5ed8ae", width: "40px" }}
           onClick={() => {
-            this.props.setDate(this.state.startDate, this.state.endDate);
+            props.setDate(startDate, endDate);
           }}
         >
           GO
         </button>
       </div>
     );
-  }
 }
 function mapDispatchToProps(dispatch) {
   return {
