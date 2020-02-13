@@ -25,7 +25,7 @@ app.get("/device_summary/", (req, res) => {
   const getDataPieChart = () => {
     res.send(dataPieChart);
   };
-  setTimeout(getDataPieChart, 1000);
+  setTimeout(getDataPieChart, 10000);
 });
 
 app.get("/ranking/", (req, res) => {

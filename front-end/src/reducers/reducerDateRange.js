@@ -1,4 +1,5 @@
 import {ActionTypes} from '../constants/constants';
+import moment from 'moment';
 
 const initialState = {
   startDate: new Date(),

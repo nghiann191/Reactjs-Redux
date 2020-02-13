@@ -3,10 +3,9 @@ import Chart from "react-apexcharts";
 import { connect } from "react-redux";
 import _ from "lodash";
 
-class HeatChart extends React.Component {
-  render() {
-    const getDataHeat = this.props.getDataHeatChart;
-    const status = this.props.getDataHeatChart.isLoadingHeat;
+const HeatChart = (props) => {
+    const getDataHeat = props.getDataHeatChart;
+    const status = props.getDataHeatChart.isLoadingHeat;
     const series = getDataHeat.getDataHeatChart;
     const options = {
       chart: {
@@ -35,7 +34,6 @@ class HeatChart extends React.Component {
         />
       )
     );
-  }
 }
 function mapStateToProps(state) {
   return {

@@ -3,10 +3,9 @@ import Chart from "react-apexcharts";
 import { connect } from "react-redux";
 import _ from "lodash";
 
-class SumaryChart extends React.Component {
-  render() {
-    const dataHeat = this.props.getDataHeatChart;
-    const status = this.props.getDataHeatChart.isLoadingHeat;
+const SumaryChart = (props) => {
+    const dataHeat = props.getDataHeatChart;
+    const status = props.getDataHeatChart.isLoadingHeat;
     const list = dataHeat.getDataHeatChart.map(e => e.data.map(a => a.y));
     const series = [
       {
@@ -56,7 +55,6 @@ class SumaryChart extends React.Component {
         </div>
       )
     );
-  }
 }
 function mapStateToProps(state) {
   return {
